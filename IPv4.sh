@@ -18,7 +18,7 @@ if [ -z "$record_id" ]; then
   exit 1
 fi
 echo "域名$RECORD_NAME 的RECORD NAME为 $record_id"
-./CloudflareST -n 1000 -f ip.txt
+./CloudflareST -n 100 -f ip.txt
 bestip=$(sed -n '2p' ./result.csv | cut -d ',' -f 1)
 update_result=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records/$record_id" \
      -H "X-Auth-Email: $API_EMAIL" \
